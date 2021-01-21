@@ -1,3 +1,6 @@
+header{
+  max-height: 64px;
+}
 .trigger {
   font-size: 18px;
   line-height: 64px;
