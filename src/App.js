@@ -11,6 +11,7 @@ import {
 import React from "react";
 import Articles from "./articles/Articles";
 import Editor from "./articles/Editor";
+import Login from "./login/Login";
 const { Header, Sider, Content } = Layout;
 
 class App extends React.Component {
@@ -29,7 +30,7 @@ class App extends React.Component {
       <Router>
         <Layout>
           <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
-            <div className="logo" />
+            <div className="logo"/>
             <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
               <Menu.Item key="1" icon={<OrderedListOutlined />}>
                 <Link to="/">文章列表</Link>
@@ -41,7 +42,7 @@ class App extends React.Component {
                 <Link to="/edit">编辑文章</Link>
               </Menu.Item>
             </Menu>
-          </Sider>
+            </Sider>
           <Layout className="site-layout">
             <Header className="site-layout-background" style={{ padding: 0 }}>
               {React.createElement(
@@ -51,6 +52,7 @@ class App extends React.Component {
                   onClick: this.toggle,
                 }
               )}
+              <Login/>
             </Header>
             <Content
               className="site-layout-background"
