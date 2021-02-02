@@ -3,7 +3,8 @@ import SimpleMDEReact from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
 import hljs from 'highlight.js';
 import 'highlight.js/styles/zenburn.css';
-import './Demo.css'
+import './Demo.css';
+import "font-awesome/css/font-awesome.min.css";
 
 
 class Demo extends React.Component {
@@ -25,6 +26,7 @@ class Demo extends React.Component {
           value={this.state.textValue}
           onChange={this.handleChange}
           options={{
+            autoDownloadFontAwesome:false,
             scrollbarStyle: "null",
             autofocus: true,
             minHeight: "60vh",
