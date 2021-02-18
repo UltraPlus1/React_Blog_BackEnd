@@ -1,6 +1,6 @@
-import { Layout, Menu } from "antd";
+import React,{useState} from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import "./App.css";
+import { Layout, Menu } from "antd";
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -8,23 +8,29 @@ import {
   UploadOutlined,
   OrderedListOutlined,
 } from "@ant-design/icons";
-import React,{useState} from "react";
+import "./App.css";
 import Articles from "../articles/Articles";
 import Editor from "../articles/Editor";
-import Login from "../login/Login"
+import Login from "../login/Login";
+// 自定义hooks
+import useToken from "./useToken";
 const { Header, Sider, Content } = Layout;
 
-const App =()=> {
-
-  const [collapsed,setCollapsed]=useState(false)
-  const [token,setToken] = useState()
+export default function App(){
+  // 展开或收起的hooks
+  const [collapsed,setCollapsed] = useState(false)
+  // token 的 hooks
+  const {token,setToken} = useToken()
   if(!token){
-    return <Login/>
+    return (
+        <Login setToken={setToken}/>
+    )
   }
+
     return (
       <Router>
         <Layout>
-          <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
+          <Sider trigger={null} collapsible collapsed={collapsed}>
             <div className="logo"/>
             <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
               <Menu.Item key="1" icon={<OrderedListOutlined />}>
@@ -44,7 +50,7 @@ const App =()=> {
                 collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
                 {
                   className: "trigger",
-                  onClick: setCollapsed(!collapsed),
+                  onClick: ()=>{setCollapsed(!collapsed)},
                 }
               )}
             </Header>
@@ -69,6 +75,4 @@ const App =()=> {
         </Layout>
       </Router>
     );
-}
-
-export default App;
+  }
