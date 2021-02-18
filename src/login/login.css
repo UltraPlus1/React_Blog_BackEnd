@@ -1,4 +1,11 @@
-.login-position {
-  float: right;
-  margin:0 24px;
+.login{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login_wrapper {
+  width: 320px;
+  padding: 10px;
+  box-shadow: 5px 5px 5px 5px #C0C0C0;
 }

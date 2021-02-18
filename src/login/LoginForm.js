@@ -1,68 +1,76 @@
-import { Form, Input, Checkbox } from 'antd';
-const layout = {
-  labelCol: {
-    span: 4,
-  },
-  wrapperCol: {
-    span: 16,
-  },
-};
-const tailLayout = {
-  wrapperCol: {
-    offset: 4,
-    span: 16,
-  },
-};
+import { Form, Input, Button, Checkbox,Typography } from 'antd';
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import React,{useState} from "react";
+const {Title} = Typography
 
 const LoginForm = () => {
+  const [username,setUsername] = useState()
+  const [password,setPassword] = useState()
   const onFinish = (values) => {
-    console.log('Success:', values);
-  };
-
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
+    console.log('Received values of form: ', values);
   };
 
   return (
-    <Form
-      {...layout}
-      name="basic"
-      initialValues={{
-        remember: true,
-      }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-    >
-      <Form.Item
-        label="用户名"
-        name="username"
-        rules={[
-          {
-            required: true,
-            message: '请输入您的用户名！',
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
+      <div className="login_wrapper">
+        <Title level={3}>Login</Title>
+        <Form
+            name="normal_login"
+            className="login-form"
+            initialValues={{
+              remember: true,
+            }}
+            onFinish={onFinish}
+        >
+          <Form.Item
+              label="Username"
+              name="username"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your Username!',
+                },
+              ]}
+          >
+            <Input
+                prefix={<UserOutlined className="site-form-item-icon"/>}
+                placeholder="Username"
+                onChange={e=>setUsername(e.target.value)}/>
+          </Form.Item>
+          <Form.Item
+              label="Password"
+              name="password"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your Password!',
+                },
+              ]}
+          >
+            <Input
+                prefix={<LockOutlined className="site-form-item-icon" />}
+                type="password"
+                placeholder="Password"
+                onChange={e => setPassword(e.target.value)}
+            />
+          </Form.Item>
+          <Form.Item>
+            <Form.Item name="remember" valuePropName="checked" noStyle>
+              <Checkbox>Remember me</Checkbox>
+            </Form.Item>
 
-      <Form.Item
-        label="密码"
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: '请输入您的密码！',
-          },
-        ]}
-      >
-        <Input.Password />
-      </Form.Item>
+            <a className="login-form-forgot" href="">
+              Forgot password
+            </a>
+          </Form.Item>
 
-      <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-        <Checkbox>Remember me</Checkbox>
-      </Form.Item>
-    </Form>
+          <Form.Item>
+            <Button type="primary" htmlType="submit" className="login-form-button">
+              Log in
+            </Button>
+            Or <a href="">register now!</a>
+          </Form.Item>
+        </Form>
+      </div>
   );
 };
 

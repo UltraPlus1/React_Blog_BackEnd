@@ -8,24 +8,19 @@ import {
   UploadOutlined,
   OrderedListOutlined,
 } from "@ant-design/icons";
-import React from "react";
-import Articles from "./articles/Articles";
-import Editor from "./articles/Editor";
-import Login from "./login/Login";
+import React,{useState} from "react";
+import Articles from "../articles/Articles";
+import Editor from "../articles/Editor";
+import Login from "../login/Login"
 const { Header, Sider, Content } = Layout;
 
-class App extends React.Component {
-  state = {
-    collapsed: false,
-  };
+const App =()=> {
 
-  toggle = () => {
-    this.setState({
-      collapsed: !this.state.collapsed,
-    });
-  };
-
-  render() {
+  const [collapsed,setCollapsed]=useState(false)
+  const [token,setToken] = useState()
+  if(!token){
+    return <Login/>
+  }
     return (
       <Router>
         <Layout>
@@ -46,13 +41,12 @@ class App extends React.Component {
           <Layout className="site-layout">
             <Header className="site-layout-background" style={{ padding: 0 }}>
               {React.createElement(
-                this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
+                collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
                 {
                   className: "trigger",
-                  onClick: this.toggle,
+                  onClick: setCollapsed(!collapsed),
                 }
               )}
-              <Login/>
             </Header>
             <Content
               className="site-layout-background"
@@ -75,7 +69,6 @@ class App extends React.Component {
         </Layout>
       </Router>
     );
-  }
 }
 
 export default App;
