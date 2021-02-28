@@ -12,6 +12,7 @@ import "./App.css";
 import Articles from "../articles/Articles";
 import Editor from "../articles/Editor";
 import Login from "../login/Login";
+import Register from '../login/Register';
 // 自定义hooks
 import useToken from "./useToken";
 const { Header, Sider, Content } = Layout;
@@ -23,7 +24,7 @@ export default function App(){
   const {token,setToken} = useToken()
   if(!token){
     return (
-        <Login setToken={setToken}/>
+        <Register setToken={setToken}/>
     )
   }
 

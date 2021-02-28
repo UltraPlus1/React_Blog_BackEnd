@@ -3,7 +3,7 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import React,{useState} from "react";
 import PropTypes from "prop-types";
 import './login.css'
-import {postData} from "../services/login"
+import {postLogin} from "../services/login"
 const {Title} = Typography
 
 export default function Login({ setToken }) {
@@ -11,7 +11,8 @@ export default function Login({ setToken }) {
     const [password, setPassword] = useState();
     const handleSubmit = async e => {
 
-        const resp = await postData({
+
+        const resp = await postLogin({
             username,
             password
         });

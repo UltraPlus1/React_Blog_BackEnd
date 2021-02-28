@@ -1,0 +1,11 @@
+.register{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .register_wrapper {
+    width: 320px;
+    padding: 10px;
+    box-shadow: 5px 5px 5px 5px #C0C0C0;
+  }
