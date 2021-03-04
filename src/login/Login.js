@@ -10,13 +10,16 @@ export default function Login({ setToken }) {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
     const handleSubmit = async e => {
+        try{
+            const resp = await postLogin({
+                username,
+                password
+            });
+            setToken(resp.data);
+        }catch (e) {
+            console.log(e)
+        }
 
-
-        const resp = await postLogin({
-            username,
-            password
-        });
-        setToken(resp.data);
     }
 
     return (
