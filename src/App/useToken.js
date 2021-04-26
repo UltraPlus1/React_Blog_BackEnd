@@ -13,11 +13,12 @@ export default function useToken(){
         // sessionStorage 存储的是 字符串格式
         const userToken = JSON.parse(tokenString);
         // 返回取出的token
-        return userToken?.token
+        return userToken
     }
     //在声明之前获取 token的初始值
     const [token,setToken] = useState(getToken());
     function saveToken(userToken){
+        console.log(userToken)
         //将 token 存储在sessionStorage 中
         sessionStorage.setItem('token', JSON.stringify(userToken));
         //设置更新token hook 的status

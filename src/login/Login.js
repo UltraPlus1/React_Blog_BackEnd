@@ -15,7 +15,9 @@ export default function Login({ setToken }) {
                 username,
                 password
             });
-            setToken(resp.data);
+            console.log(resp.data.status)
+            setToken(resp.data.status);
+            window.location.reload()
         }catch (e) {
             console.log(e)
         }

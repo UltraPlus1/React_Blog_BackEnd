@@ -22,9 +22,10 @@ export default function App(){
   const [collapsed,setCollapsed] = useState(false)
   // token 的 hooks
   const {token,setToken} = useToken()
+  console.log(token)
   if(!token){
     return (
-        <Register setToken={setToken}/>
+        <Login setToken={setToken}/>
     )
   }
 
