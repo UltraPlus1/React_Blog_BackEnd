@@ -5,3 +5,11 @@
   background: #3f3f3f;
   color: #dcdcdc;
 }
+.title-line{
+  position: relative;
+}
+.btn-position{
+  position: absolute !important;
+  right: 0;
+  top: 0;
+}
