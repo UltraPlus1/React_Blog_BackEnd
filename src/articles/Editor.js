@@ -7,10 +7,22 @@ import 'highlight.js/styles/zenburn.css';
 import './Editor.css';
 import "font-awesome/css/font-awesome.min.css";
 import FormItem from "antd/lib/form/FormItem";
+import {postArticle} from "../services/article";
 const { Title } = Typography;
 const Editor = () => {
   const [textValue,setTextValue] = useState('Start writing!!');
   const [titleValue,setTitleValue] = useState('');
+  const handleSubmit = async e => {
+      try{
+          const resp = await postArticle({
+              'title':titleValue,
+              'content':textValue
+          });
+          console.log(resp.data.status)
+      }catch (e) {
+          console.log(e)
+      }
+  }
   return (
     <div className="container container-narrow">
       <Title level={2}>编辑文章</Title>
@@ -35,7 +47,7 @@ const Editor = () => {
             size="large"/>
           </Form.Item>
         </Form>
-        <Button type="primary" className="btn-position">发布文章</Button>
+        <Button type="primary" className="btn-position" onClick={handleSubmit}>发布文章</Button>
       </div>
       <SimpleMDEReact
         value={textValue}
